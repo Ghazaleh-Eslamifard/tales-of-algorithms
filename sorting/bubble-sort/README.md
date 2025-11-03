@@ -1,7 +1,7 @@
 # Bubble Sort in TypeScript
-Bubble sort works by repeatedly comparing and swapping adjacent elements in pairs until the array is sorted.
+Bubble Sort works by repeatedly comparing and swapping adjacent elements in pairs until the array is sorted.
 
-It is called bubble sort because the largest numbers "bubble up" to the end of the array, one by one.
+It is called Bubble Sort because the largest numbers "bubble up" to the end of the array, one by one.
 
 ## How Bubble Sort Works
 - Start a **pass** over the array.
@@ -26,7 +26,7 @@ BUBBLE SORT(A)
 Bubble Sort performance depends on the input order, so for an array of length **n**:
 
 ### Worst Case
-For a reversed array like [5, 4, 3, 2, 1], bubble sort performs a swap on every comparison.
+For a reversed array like [5, 4, 3, 2, 1], Bubble Sort performs a swap on every comparison.
 
 - Total comparisons: `1 + 2 + 3 + ... + (n-1) = n(n-1)/2`
 - Total swaps: `1 + 2 + 3 + ... + (n-1) = n(n-1)/2`
@@ -40,7 +40,7 @@ For a reversed array like [5, 4, 3, 2, 1], bubble sort performs a swap on every 
 - Time Complexity: **O(n²)**
 
 ### Best Case
-For an already sorted array like [1, 2, 3, 4, 5], bubble sort completes in a single pass with no swaps needed.
+For an already sorted array like [1, 2, 3, 4, 5], Bubble Sort completes in a single pass with no swaps needed.
 
 - Total comparisons: `n - 1` 
 - Total swaps: `0`
@@ -54,7 +54,7 @@ The only additional memory used is a few variables, such as loop counters and a 
 - Space complexity: **O(1)** (constant memory)
 
 ### Complexity Summary
-In the worst case, bubble sort makes exactly (n² - n)/2,
+In the worst case, Bubble Sort makes exactly (n² - n)/2,
 which simplifies to **O(n²) time complexity** when dropping constants and lower-order terms.
 
 It also has **O(1) space complexity**, since it is in-place and only uses a few extra variables.
@@ -68,14 +68,19 @@ function bubbleSort(array: number[]): number[] {
   const n = array.length;
 
   for (let pass = 0; pass < n - 1; pass++) {
+    // Track if any swap occurs during this pass
+    let swapped = false;
     // 'n - pass - 1' ensures we skip the elements already in their correct positionse
     for (let index = 0; index < n - pass - 1; index++) {
-            if (array[index] > array[index + 1]) {
-                [array[index], array[index + 1]] = [array[index + 1], array[index]];
-            }
-        }
+      if (array[index] > array[index + 1]) {
+        [array[index], array[index + 1]] = [array[index + 1], array[index]];
+        swapped = true;
+      }
     }
-    return array;
+    if (!swapped) break;
+  }
+
+  return array;
 }
 ```
 
